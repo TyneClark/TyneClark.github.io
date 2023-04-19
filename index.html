@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+    
+    <link rel="mask-icon" href="favicon/safari-pinned-tab.svg" color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <title>My Shopping List</title>
+  </head>
+  <div id="home">
+    <h1>Shopping List</h1>
+    <p>Click the button to submit an item to your shopping list!</p>
+    <input type="text" id="new-item" placeholder="Item Name (Milk, Etc...)">
+    <input type="text" id="new-quantity" placeholder="Quantity of item">
+    <br>
+    <br>
+    <input type="text" id="new-brand" placeholder="Brand of item">
+    <input type="text" id="new-price" placeholder="Price Per item (in $USD)">
+    <input type="text" id="new-store" placeholder="Store that sells item">
+    <button id="submit-item">Submit Item</button>
+    <button id="submit-edit">Submit Edit</button>
+    <div id="wrapper">
+      <p id="shopping-list"></p>
+    </div>
+  </div>
+  <div id="login">
+    <h1>Shopping List Login</h1>
+    <button id="create-account">Create an account</button><br>
+    <p>Input some info below to Log in!</p>
+    <input type="text" id="user-email" placeholder="Email">
+    <input type="text" id="user-password" placeholder="Password">
+    <button id="submit-login">Login</button>
+  </div>
+  <div id="register">
+    <h1>Shopping List Registration</h1>
+    <p>Input some info below to Register!</p>
+    <input type="text" id="new-user-email" placeholder="Email">
+    <input type="text" id="new-user-password" placeholder="Password">
+    <br>
+    <br>
+    <input type="text" id="user-fname" placeholder="First Name">
+    <input type="text" id="user-lname" placeholder="Last Name">
+    <button id="submit-account">Register</button>
+  </div>
+  <script src="script.js"></script>
+</html>

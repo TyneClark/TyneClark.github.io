@@ -1,0 +1,29 @@
+* {
+    background-color: #81c6db;
+  }
+  
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+  }
+    
+    input, button {
+      font-size: 18px;
+      padding: 10px;
+      border: solid;
+      border-radius: 8px;
+      border-width: thin;
+      background-color: #F1f1f1;
+    }
+    
+    button {
+      cursor: pointer;
+    }
+    
+    li {
+      font-size: 20px;
+      font-style: italic;
+      margin-top: 20px;
+      list-style-type: square;
+      list-style-position: inside;
+    }
