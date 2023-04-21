@@ -38,7 +38,7 @@
 
 
   function loadCartFromServer() {
-    fetch("https://s23-deploy-tyneclark-production.up.railway.app/cart", {
+    fetch("http://localhost:8080/cart", {
       // request details:
       method: "GET",
       credentials: "include",
@@ -54,9 +54,10 @@
   
         // for movie in myMovies:
         myMovies.forEach(function (movie) {
-  
           var nameDiv = document.createElement("li");
           string = JSON.stringify(movie)
+          console.log("name:", movie.name)
+          console.log("quantity:", movie.quantity)
           //console.log("string=",string)
           split_string = string.split(":")
           //console.log("splitstring=",split_string)
@@ -130,7 +131,7 @@
     var data = "name=" + encodeURIComponent(itemName) + "&quantity=" + encodeURIComponent(itemQuantity) + "&brand=" + encodeURIComponent(itemBrand) + "&price=" + encodeURIComponent(itemPrice) + "&store=" + encodeURIComponent(itemStore);
     console.log("sending data to server:", data);
   
-    fetch("https://s23-deploy-tyneclark-production.up.railway.app/cart", {
+    fetch("http://localhost:8080/cart", {
       // request details:
       method: "POST",
       body: data,
@@ -198,7 +199,7 @@
 
 function deleteItemFromServer(id) {
   console.log("attempting to delete item from server with id:", id)
-  var address = "https://s23-deploy-tyneclark-production.up.railway.app/cart/" + id
+  var address = "http://localhost:8080/cart/" + id
   console.log("sending request to server with path:", address)
   
   fetch(address, {
@@ -219,7 +220,7 @@ function deleteItemFromServer(id) {
   
 function replaceItemOnServer(id, itemName, itemQuantity, itemBrand, itemPrice, itemStore) {
   console.log("attempting to edit item from server with id:", id)
-  var address = "https://s23-deploy-tyneclark-production.up.railway.app/cart/" + id
+  var address = "http://localhost:8080/cart/" + id
   console.log("sending request to server with path:", address)
   
   var data = "name=" + encodeURIComponent(itemName) + "&quantity=" + encodeURIComponent(itemQuantity) + "&brand=" + encodeURIComponent(itemBrand) + "&price=" + encodeURIComponent(itemPrice) + "&store=" + encodeURIComponent(itemStore);
@@ -284,7 +285,7 @@ function submitLogin() {
       var data = "email=" + encodeURIComponent(email) + "&password=" + encodeURIComponent(password);
       console.log("sending data to server:", data);
     
-      fetch("https://s23-deploy-tyneclark-production.up.railway.app/login", {
+      fetch("http://localhost:8080/login", {
         // request details:
         method: "POST",
         body: data,
@@ -340,7 +341,7 @@ function submitLogin() {
         var data = "email=" + encodeURIComponent(email) + "&password=" + encodeURIComponent(password) + "&fname=" + encodeURIComponent(fname) + "&lname=" + encodeURIComponent(lname);
         console.log("sending data to server:", data);
       
-        fetch("https://s23-deploy-tyneclark-production.up.railway.app/register", {
+        fetch("http://localhost:8080/register", {
           // request details:
           method: "POST",
           body: data,
@@ -391,7 +392,7 @@ register.style.display = "none";
 home.style.display = "none";
 
 function checkAuth() {
-  fetch("https://s23-deploy-tyneclark-production.up.railway.app/cart", {
+  fetch("http://localhost:8080/cart", {
       // request details:
       method: "GET",
       credentials: "include",
