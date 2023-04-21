@@ -58,46 +58,14 @@
           string = JSON.stringify(movie)
           console.log("name:", movie.name)
           console.log("quantity:", movie.quantity)
-          //console.log("string=",string)
-          split_string = string.split(":")
-          //console.log("splitstring=",split_string)
-          brand_part = split_string[4]
-          //console.log("brand_part:", brand_part)
-          brand_part = brand_part.split('"')
-          //console.log("newbrand:", brand_part)
-          brand = brand_part[1]
-          //console.log("endbrand:", brand_part)
-          price_part = split_string[5]
-          price_part = price_part.split(",")
-          price_part = price_part[0]
-          price_part = price_part.split('"')
-          price = price_part[0]
-          store_part = split_string[6]
-          store_part = store_part.split('"')
-          store = store_part[1]
-          //console.log("BRAND:", brand_part)
-          //console.log("PRICE:", price_part)
-          //console.log("STORE:", store_part)
-          quan_part = split_string[3]
-          //console.log("quanpart=",quan_part)
-          quan_part = quan_part.split("}")
-          //console.log("newquan=",quan_part)
-          quan_part = quan_part[0]
-          quan_part.split(",")
-          quantity = quan_part[0]
-          //console.log("QUANTITY=", quantity)
-          name_part = split_string[2]
-          //console.log("namepart=", name_part)
-          name_part = name_part.split('"')
-          //console.log ("newnamepart=", name_part)
-          myname = name_part[1]
-          //console.log("NAME=", myname)
-          id_part = split_string[1]
-          //console.log("IDpart=", id_part)
-          id_part = id_part.split(",")
-          //console.log("Newidpart=", id_part)
-          item_id = id_part[0]
-          //console.log("ID=", item_id)
+          console.log("brand:", movie.brand)
+          console.log("price:", movie.price)
+          console.log("store:", movie.store)
+          myname = movie.name
+          quantity = movie.quantity
+          brand = movie.brand
+          price = movie.price
+          store = movie.store
           TOSCREEN = quantity + " " + myname
           nameDiv.innerHTML = TOSCREEN;
           nameDiv.classList.add("item-name");
