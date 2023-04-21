@@ -56,11 +56,13 @@
         myMovies.forEach(function (movie) {
           var nameDiv = document.createElement("li");
           string = JSON.stringify(movie)
+          console.log("id:", movie.id)
           console.log("name:", movie.name)
           console.log("quantity:", movie.quantity)
           console.log("brand:", movie.brand)
           console.log("price:", movie.price)
           console.log("store:", movie.store)
+          item_id = movie.id
           myname = movie.name
           quantity = movie.quantity
           brand = movie.brand
