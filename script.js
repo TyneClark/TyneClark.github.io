@@ -38,7 +38,7 @@
 
 
   function loadCartFromServer() {
-    fetch("http://localhost:8080/cart", {
+    fetch("https://s23-deploy-tyneclark-production.up.railway.app/cart", {
       // request details:
       method: "GET",
       credentials: "include",
@@ -131,7 +131,7 @@
     var data = "name=" + encodeURIComponent(itemName) + "&quantity=" + encodeURIComponent(itemQuantity) + "&brand=" + encodeURIComponent(itemBrand) + "&price=" + encodeURIComponent(itemPrice) + "&store=" + encodeURIComponent(itemStore);
     console.log("sending data to server:", data);
   
-    fetch("http://localhost:8080/cart", {
+    fetch("https://s23-deploy-tyneclark-production.up.railway.app/cart", {
       // request details:
       method: "POST",
       body: data,
@@ -199,7 +199,7 @@
 
 function deleteItemFromServer(id) {
   console.log("attempting to delete item from server with id:", id)
-  var address = "http://localhost:8080/cart/" + id
+  var address = "https://s23-deploy-tyneclark-production.up.railway.app/cart/" + id
   console.log("sending request to server with path:", address)
   
   fetch(address, {
@@ -220,7 +220,7 @@ function deleteItemFromServer(id) {
   
 function replaceItemOnServer(id, itemName, itemQuantity, itemBrand, itemPrice, itemStore) {
   console.log("attempting to edit item from server with id:", id)
-  var address = "http://localhost:8080/cart/" + id
+  var address = "https://s23-deploy-tyneclark-production.up.railway.app/cart/" + id
   console.log("sending request to server with path:", address)
   
   var data = "name=" + encodeURIComponent(itemName) + "&quantity=" + encodeURIComponent(itemQuantity) + "&brand=" + encodeURIComponent(itemBrand) + "&price=" + encodeURIComponent(itemPrice) + "&store=" + encodeURIComponent(itemStore);
@@ -285,7 +285,7 @@ function submitLogin() {
       var data = "email=" + encodeURIComponent(email) + "&password=" + encodeURIComponent(password);
       console.log("sending data to server:", data);
     
-      fetch("http://localhost:8080/login", {
+      fetch("https://s23-deploy-tyneclark-production.up.railway.app/login", {
         // request details:
         method: "POST",
         body: data,
@@ -341,7 +341,7 @@ function submitLogin() {
         var data = "email=" + encodeURIComponent(email) + "&password=" + encodeURIComponent(password) + "&fname=" + encodeURIComponent(fname) + "&lname=" + encodeURIComponent(lname);
         console.log("sending data to server:", data);
       
-        fetch("http://localhost:8080/register", {
+        fetch("https://s23-deploy-tyneclark-production.up.railway.app/register", {
           // request details:
           method: "POST",
           body: data,
@@ -392,7 +392,7 @@ register.style.display = "none";
 home.style.display = "none";
 
 function checkAuth() {
-  fetch("http://localhost:8080/cart", {
+  fetch("https://s23-deploy-tyneclark-production.up.railway.app/cart", {
       // request details:
       method: "GET",
       credentials: "include",
