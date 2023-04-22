@@ -72,6 +72,8 @@
           nameDiv.innerHTML = TOSCREEN;
           nameDiv.classList.add("item-name");
           nameDiv.setAttribute("div-id", item_id)
+          nameDiv.setAttribute("name", myname)
+          nameDiv.setAttribute("quantity", quantity)
           nameDiv.setAttribute("brand", brand)
           nameDiv.setAttribute("price", price)
           nameDiv.setAttribute("store", store)
@@ -148,17 +150,9 @@
         //console.log(item_name)
         test = item_name[0]
         console.log(test)
-        //console.log(test.textContent)
-        temp = test.textContent.split("X")
-        console.log("after split", temp)
-        temp = temp[0]
-        temp = temp.split(" ")
-        // console.log(temp)
-        item_name = temp[1]
-        item_quantity = temp[0]
         console.log("brand value:", test.getAttribute("brand"))
-        document.getElementById("new-item").value = item_name
-        document.getElementById("new-quantity").value = item_quantity
+        document.getElementById("new-item").value = decodeURIComponent(test.name)
+        document.getElementById("new-quantity").value = decodeURIComponent(test.quantity)
         document.getElementById("new-brand").value = test.getAttribute("brand")
         document.getElementById("new-price").value = test.getAttribute("price")
         document.getElementById("new-store").value = test.getAttribute("store")
