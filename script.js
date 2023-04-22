@@ -144,7 +144,7 @@
     if (button.getAttribute("class") === 'edit-button') {
       item_id = button.getAttribute("div-id")
       document.getElementById("submit-item").style.display = "none"
-      document.getElementById("submit-edit").style.display = "block"
+      document.getElementById("submit-edit").style.display = "inline"
       if (confirm("Are you sure you want to edit this item?")) {
         // query for an item-name with same div-id
         var item_name = document.querySelectorAll('[div-id='+'"'+item_id+'"'+']');
@@ -228,7 +228,7 @@ function submitItemEdit(id) {
   document.getElementById("new-brand").value = ""
   document.getElementById("new-price").value = ""
   document.getElementById("new-store").value = ""
-  document.getElementById("submit-item").style.display = "block"
+  document.getElementById("submit-item").style.display = "inline"
   
 
 }
