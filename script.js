@@ -62,12 +62,12 @@
           console.log("brand:", movie.brand)
           console.log("price:", movie.price)
           console.log("store:", movie.store)
-          item_id = movie.id
-          myname = movie.name
-          quantity = movie.quantity
-          brand = movie.brand
-          price = movie.price
-          store = movie.store
+          item_id = decodeURIComponent(movie.id)
+          myname = decodeURIComponent(movie.name)
+          quantity = decodeURIComponent(movie.quantity)
+          brand = decodeURIComponent(movie.brand)
+          price = decodeURIComponent(movie.price)
+          store = decodeURIComponent(movie.store)
           TOSCREEN = quantity + " " + myname
           nameDiv.innerHTML = TOSCREEN;
           nameDiv.classList.add("item-name");
