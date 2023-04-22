@@ -151,8 +151,8 @@
         test = item_name[0]
         console.log(test)
         console.log("brand value:", test.getAttribute("brand"))
-        document.getElementById("new-item").value = decodeURIComponent(test.name)
-        document.getElementById("new-quantity").value = decodeURIComponent(test.quantity)
+        document.getElementById("new-item").value = test.getAttribute("name")
+        document.getElementById("new-quantity").value = test.getAttribute("quantity")
         document.getElementById("new-brand").value = test.getAttribute("brand")
         document.getElementById("new-price").value = test.getAttribute("price")
         document.getElementById("new-store").value = test.getAttribute("store")
