@@ -1,5 +1,4 @@
-  
-  const submitItem = () => {
+const submitItem = () => {
     //button is clicked
     console.log("Submit button was clicked")
     //get the item the user enters
@@ -19,7 +18,7 @@
     document.getElementById("new-store").value = "";
   };
 
-  
+
 
   //add a listener for the button
   document.getElementById("submit-item").addEventListener("click", submitItem);
@@ -44,63 +43,36 @@
       credentials: "include",
     }).then(function (response) {
       response.json().then(function (data) {
-        
+
         console.log("data received from server:", data);
         myMovies = data;
-  
+
         var myList = document.querySelector("#shopping-list");
         console.log("my list element:", myList);
         myList.innerHTML = "";
-  
+
         // for movie in myMovies:
         myMovies.forEach(function (movie) {
-  
           var nameDiv = document.createElement("li");
           string = JSON.stringify(movie)
-          //console.log("string=",string)
-          split_string = string.split(":")
-          //console.log("splitstring=",split_string)
-          brand_part = split_string[4]
-          //console.log("brand_part:", brand_part)
-          brand_part = brand_part.split('"')
-          //console.log("newbrand:", brand_part)
-          brand = brand_part[1]
-          //console.log("endbrand:", brand_part)
-          price_part = split_string[5]
-          price_part = price_part.split(",")
-          price_part = price_part[0]
-          price_part = price_part.split('"')
-          price = price_part[0]
-          store_part = split_string[6]
-          store_part = store_part.split('"')
-          store = store_part[1]
-          //console.log("BRAND:", brand_part)
-          //console.log("PRICE:", price_part)
-          //console.log("STORE:", store_part)
-          quan_part = split_string[3]
-          //console.log("quanpart=",quan_part)
-          quan_part = quan_part.split("}")
-          //console.log("newquan=",quan_part)
-          quan_part = quan_part[0]
-          quan_part.split(",")
-          quantity = quan_part[0]
-          //console.log("QUANTITY=", quantity)
-          name_part = split_string[2]
-          //console.log("namepart=", name_part)
-          name_part = name_part.split('"')
-          //console.log ("newnamepart=", name_part)
-          myname = name_part[1]
-          //console.log("NAME=", myname)
-          id_part = split_string[1]
-          //console.log("IDpart=", id_part)
-          id_part = id_part.split(",")
-          //console.log("Newidpart=", id_part)
-          item_id = id_part[0]
-          //console.log("ID=", item_id)
+          console.log("id:", movie.id)
+          console.log("name:", movie.name)
+          console.log("quantity:", movie.quantity)
+          console.log("brand:", movie.brand)
+          console.log("price:", movie.price)
+          console.log("store:", movie.store)
+          item_id = decodeURIComponent(movie.id)
+          myname = decodeURIComponent(movie.name)
+          quantity = decodeURIComponent(movie.quantity)
+          brand = decodeURIComponent(movie.brand)
+          price = decodeURIComponent(movie.price)
+          store = decodeURIComponent(movie.store)
           TOSCREEN = quantity + " " + myname
           nameDiv.innerHTML = TOSCREEN;
           nameDiv.classList.add("item-name");
           nameDiv.setAttribute("div-id", item_id)
+          nameDiv.setAttribute("name", myname)
+          nameDiv.setAttribute("quantity", quantity)
           nameDiv.setAttribute("brand", brand)
           nameDiv.setAttribute("price", price)
           nameDiv.setAttribute("store", store)
@@ -126,10 +98,10 @@
 
   function createItemOnServer(itemName, itemQuantity, itemBrand, itemPrice, itemStore) {
     console.log("attempting to create item", itemName, "on server");
-  
+
     var data = "name=" + encodeURIComponent(itemName) + "&quantity=" + encodeURIComponent(itemQuantity) + "&brand=" + encodeURIComponent(itemBrand) + "&price=" + encodeURIComponent(itemPrice) + "&store=" + encodeURIComponent(itemStore);
     console.log("sending data to server:", data);
-  
+
     fetch("https://s23-deploy-tyneclark-production.up.railway.app/cart", {
       // request details:
       method: "POST",
@@ -140,13 +112,13 @@
       }
     }).then(function (response) {
       // when the server responds:
-  
+
       if (response.status == 201) {
         loadCartFromServer();
       } else {
         console.log("server responded with", response.status, "when trying to create a item");
       }
-  
+
     });
   }
 
@@ -170,6 +142,8 @@
     }
     if (button.getAttribute("class") === 'edit-button') {
       item_id = button.getAttribute("div-id")
+      document.getElementById("submit-item").style.display = "none"
+      document.getElementById("submit-edit").style.display = "inline"
       if (confirm("Are you sure you want to edit this item?")) {
         // query for an item-name with same div-id
         var item_name = document.querySelectorAll('[div-id='+'"'+item_id+'"'+']');
@@ -177,17 +151,9 @@
         //console.log(item_name)
         test = item_name[0]
         console.log(test)
-        //console.log(test.textContent)
-        temp = test.textContent.split("X")
-        console.log("after split", temp)
-        temp = temp[0]
-        temp = temp.split(" ")
-        // console.log(temp)
-        item_name = temp[1]
-        item_quantity = temp[0]
         console.log("brand value:", test.getAttribute("brand"))
-        document.getElementById("new-item").value = item_name
-        document.getElementById("new-quantity").value = item_quantity
+        document.getElementById("new-item").value = test.getAttribute("name")
+        document.getElementById("new-quantity").value = test.getAttribute("quantity")
         document.getElementById("new-brand").value = test.getAttribute("brand")
         document.getElementById("new-price").value = test.getAttribute("price")
         document.getElementById("new-store").value = test.getAttribute("store")
@@ -200,28 +166,28 @@ function deleteItemFromServer(id) {
   console.log("attempting to delete item from server with id:", id)
   var address = "https://s23-deploy-tyneclark-production.up.railway.app/cart/" + id
   console.log("sending request to server with path:", address)
-  
+
   fetch(address, {
       // request details:
       method: "DELETE",
       credentials: "include"
     }).then(function (response) {
       // when the server responds:
-  
+
       if (response.status == 204) {
         loadCartFromServer();
       } else {
         console.log("server responded with", response.status, "when trying to delete an item");
       }
-  
+
     });
 }
-  
+
 function replaceItemOnServer(id, itemName, itemQuantity, itemBrand, itemPrice, itemStore) {
   console.log("attempting to edit item from server with id:", id)
   var address = "https://s23-deploy-tyneclark-production.up.railway.app/cart/" + id
   console.log("sending request to server with path:", address)
-  
+
   var data = "name=" + encodeURIComponent(itemName) + "&quantity=" + encodeURIComponent(itemQuantity) + "&brand=" + encodeURIComponent(itemBrand) + "&price=" + encodeURIComponent(itemPrice) + "&store=" + encodeURIComponent(itemStore);
   console.log("sending data to server:", data);
   fetch(address, {
@@ -234,18 +200,19 @@ function replaceItemOnServer(id, itemName, itemQuantity, itemBrand, itemPrice, i
       }
     }).then(function (response) {
       // when the server responds:
-  
+
       if (response.status == 204) {
         loadCartFromServer();
       } else {
         console.log("server responded with", response.status, "when trying to delete an item");
       }
-  
+
     });
 }
 
 function submitItemEdit(id) {
   // button is clicked
+  document.getElementById("submit-edit").style.display = "none"
   console.log("submit edit button pressed")
   console.log("id provided:", id)
   const itemName = document.getElementById("new-item").value;
@@ -260,6 +227,8 @@ function submitItemEdit(id) {
   document.getElementById("new-brand").value = ""
   document.getElementById("new-price").value = ""
   document.getElementById("new-store").value = ""
+  document.getElementById("submit-item").style.display = "inline"
+
 
 }
 
@@ -275,15 +244,15 @@ function submitLogin() {
     userLogin(userEmail, userPassword);
     document.getElementById("user-email").value = ""
     document.getElementById("user-password").value = ""
-  
+
   }
-  
+
   function userLogin(email, password) {
     console.log("attempting to login with email", email, "on server");
-    
+
       var data = "email=" + encodeURIComponent(email) + "&password=" + encodeURIComponent(password);
       console.log("sending data to server:", data);
-    
+
       fetch("https://s23-deploy-tyneclark-production.up.railway.app/session", {
         // request details:
         method: "POST",
@@ -294,7 +263,7 @@ function submitLogin() {
         }
       }).then(function (response) {
         // when the server responds:
-    
+
         if (response.status == 201) {
           console.log("Creation Successful")
           var home = document.getElementById("home");
@@ -313,7 +282,7 @@ function submitLogin() {
           message.style.backgroundColor = "red"
           document.getElementById("submit-login").appendChild(message)
         }
-    
+
       });
   }
 
@@ -331,15 +300,15 @@ function submitLogin() {
       createUserAccount(userEmail, userPassword, userFname, userLname);
       document.getElementById("user-email").value = ""
       document.getElementById("user-password").value = ""
-    
+
     }
-    
+
     function createUserAccount(email, password, fname, lname) {
       console.log("attempting to create account with email", email, "on server");
-      
+
         var data = "email=" + encodeURIComponent(email) + "&password=" + encodeURIComponent(password) + "&fname=" + encodeURIComponent(fname) + "&lname=" + encodeURIComponent(lname);
         console.log("sending data to server:", data);
-      
+
         fetch("https://s23-deploy-tyneclark-production.up.railway.app/user", {
           // request details:
           method: "POST",
@@ -350,7 +319,7 @@ function submitLogin() {
           }
         }).then(function (response) {
           // when the server responds:
-      
+
           if (response.status == 201) {
             console.log("Creation Successful")
             var home = document.getElementById("home");
@@ -361,14 +330,14 @@ function submitLogin() {
             home.style.display = "block";
             userLogin(email, password);
             //location.href = 'index.html';
-  
+
           } else {
             console.log("server responded with", response.status, "when trying to create an account");
             var message = document.createElement('p')
             message.textContent = "Account with this email already exists"
             document.getElementById("submit-account").appendChild(message)
           }
-      
+
         });
     }
 
@@ -382,7 +351,7 @@ login.style.display = "none";
 register.style.display = "block";
 home.style.display = "none";
 }
-    
+
 var home = document.getElementById("home");
 var register = document.getElementById("register");
 var login = document.getElementById("login");
@@ -403,10 +372,10 @@ function checkAuth() {
         login.style.display = "none";
         register.style.display = "none";
         home.style.display = "block";
+        document.getElementById("submit-edit").style.display = "none";
         loadCartFromServer()
       }
     });
 }
 
 checkAuth()
-
