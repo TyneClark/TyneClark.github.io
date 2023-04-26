@@ -273,6 +273,7 @@ function submitLogin() {
           login.style.display = "none";
           home.style.display = "block";
           loadCartFromServer();
+          document.getElementById("submit-edit").style.display = "none"
           //location.href = 'index.html';
 
         } else {
