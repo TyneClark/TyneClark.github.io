@@ -253,7 +253,7 @@ function submitLogin() {
       var data = "email=" + encodeURIComponent(email) + "&password=" + encodeURIComponent(password);
       console.log("sending data to server:", data);
 
-      fetch("https://s23-deploy-tyneclark-production.up.railway.app/session", {
+      fetch("https://s23-deploy-tyneclark-production.up.railway.app/sessions", {
         // request details:
         method: "POST",
         body: data,
@@ -309,7 +309,7 @@ function submitLogin() {
         var data = "email=" + encodeURIComponent(email) + "&password=" + encodeURIComponent(password) + "&fname=" + encodeURIComponent(fname) + "&lname=" + encodeURIComponent(lname);
         console.log("sending data to server:", data);
 
-        fetch("https://s23-deploy-tyneclark-production.up.railway.app/user", {
+        fetch("https://s23-deploy-tyneclark-production.up.railway.app/users", {
           // request details:
           method: "POST",
           body: data,
